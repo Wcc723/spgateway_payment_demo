@@ -3,26 +3,35 @@ extends layout
 block content
   .container.my-3
     h2 確認訂單
-    form(action="")
+    form(action="https://ccore.spgateway.com/MPG/mpg_gateway" method="post")
+      input(type="hidden" name="MerchantID" value="MS13095118")
+      input(type="hidden" name="RespondType" value="JSON")
+      input(type="hidden" name="CheckValue" value="#{sha}")
+      input(type="hidden" name="TimeStamp" value="#{data.timestamp}")
+      input(type="hidden" name="Version" value="1.2")
+      input(type="hidden" name="MerchantOrderNo" value="#{data.timestamp}")
+      input(type="hidden" name="Amt" value="#{data.Amt}")
+      input(type="hidden" name="ItemDesc" value="#{data.ItemDesc}")
+      input(type="hidden" name="Email" value="#{data.Email}")
       
       table.table
         tr
           th(width="200") 訂單編號
-          td 1234567
+          td #{data.timestamp}
         tr
           th(width="200") 訂單建立時間
-          td 2018/1/18
+          td #{data.timestamp}
         tr
           th 訂購產品 
-          td xxxx
+          td #{data.ItemDesc}
         tr
           th 總金額
           td
-            | NT$ 1000
+            | NT$ #{data.Amt}
         tr
           th 信箱
           td
-            | xxxx@gmail.com
+            | #{data.Email}
 
       .mt-3.text-right
         button.btn.btn-primary 送出

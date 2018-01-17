@@ -3,7 +3,7 @@ extends layout
 block content
   .container.my-3
     h2 要什麼，自己選
-    form(action="")
+    form(action="/order_create" method="POST")
       .form-group
         label(for="Email") 信箱
         input.form-control(type="email" id="Email" name="Email")
