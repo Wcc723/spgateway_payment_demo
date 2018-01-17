@@ -52,15 +52,17 @@ router.post('/spgateway_notify', (req, res, next) => {
   if (JSONData.Status === 'SUCCESS') {
     // 解密驗證，注意 Result.TradeNo
     let parameter = `Amt=${data.Amt}&MerchantID=${spgateway.MerchantID}&MerchantOrderNo=${data.timestamp}&TradeNo=${Result.TradeNo}&Version=1.2`;
-    parameter = `HashKey=${spgateway.HashKey}&${parameter}&HashIV=${spgateway.HashIV}`;
+    parameter = `HashIV=${spgateway.HashIV}&${parameter}&HashKey=${spgateway.HashKey}`;
     const sha = sha256(parameter).toUpperCase();
     console.log('parameter', parameter, 'sha', sha, 'CheckCode', Result.CheckCode);
     if (sha === Result.CheckCode) {
       // 另外可自訂其他驗證項目
       data.payment = Result;
       console.log('交易成功', data.payment);
+      res.end();
     } else {
       console.log('交易失敗 交易碼不符合');
+      res.end();
     }
   }
 });
