@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  .container.my-3
+    h2 要什麼，自己選
+    form(action="")
+      .form-group
+        label(for="Email") 信箱
+        input.form-control(type="email" id="Email" name="Email")
+      .form-group
+        label(for="ItemDesc") 商品名稱
+        input.form-control(type="text" id="ItemDesc" name="ItemDesc")
+      .form-group
+        label(for="Amt") 價格
+        input.form-control(type="text" id="ItemDesc" name="Amt")
+      .mt-3.text-right
+        button.btn.btn-primary 送出
+

@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  .container.my-3
+    h2 確認訂單
+    form(action="")
+      
+      table.table
+        tr
+          th(width="200") 訂單編號
+          td 1234567
+        tr
+          th(width="200") 訂單建立時間
+          td 2018/1/18
+        tr
+          th 訂購產品 
+          td xxxx
+        tr
+          th 總金額
+          td
+            | NT$ 1000
+        tr
+          th 信箱
+          td
+            | xxxx@gmail.com
+
+      .mt-3.text-right
+        button.btn.btn-primary 送出
