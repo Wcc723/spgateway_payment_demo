@@ -51,7 +51,7 @@ router.post('/spgateway_notify', (req, res, next) => {
   // 如果傳入交易成功
   if (JSONData.Status === 'SUCCESS') {
     // 解密驗證，注意 Result.TradeNo
-    let parameter = `Amt=${data.Amt}&MerchantID=${spgateway.MerchantID}&MerchantOrderNo=${data.timestamp}&TradeNo=${Result.TradeNo}&Version=1.2`;
+    let parameter = `Amt=${data.Amt}&MerchantID=${spgateway.MerchantID}&MerchantOrderNo=${data.timestamp}&TradeNo=${Result.TradeNo}`;
     parameter = `HashIV=${spgateway.HashIV}&${parameter}&HashKey=${spgateway.HashKey}`;
     const sha = sha256(parameter).toUpperCase();
     console.log('parameter', parameter, 'sha', sha, 'CheckCode', Result.CheckCode);
